@@ -1,5 +1,6 @@
 # vertices-puzzle
-Cherwell Software Technical Interview puzzle - C# Web API Endpoint
+Cherwell Software Technical Interview puzzle - C# Web API Endpoint  
+My implemented code is located at TrianglePuzzle/Controllers/ValuesController  
 
 Runs on localhost  
 Responds to JSON POST requests of the form:  
