@@ -22,68 +22,24 @@ namespace TrianglePuzzle.Controllers
             return "value";
         }
 
+      
         // POST api/values
         public string Post([FromBody]dynamic value)
         {
 
-            int x1, x2, x3, y1, y2, y3;
-            char rowLetter = value.rowLetter;
+            Calculator calculator = new Calculator();
 
-            // Convert letter to position in alphabet to better work with row numbers
-            int rowNumber = char.ToUpper(rowLetter) - 64;
-
-            // Parse column number
-            int columnNumber = 0;
-            string columnNo = value.columnNo;
-            Int32.TryParse(columnNo, out columnNumber);
-
-
-            // Validate input
-            if (columnNumber > 12 || columnNumber < 1)
+            if(value.type == "A" || value.type == "a")
             {
-                return "Invalid column number (accepted range 1-12)";
-            }
-            else if (rowNumber > 6 || rowNumber < 1)
+                return calculator.performTaskA(value);
+                    
+            } else if (value.type == "B" || value.type == "b")
             {
-                return "Invalid row letter (accepted range A-F)";
-            }
-
-            // Mathematically calculate position of vertices based on row and column number
-            if(columnNumber % 2 == 0)
+                return calculator.performTaskB(value);
+            } else
             {
-                y1 = (rowNumber * 10) - 10;
-                y2 = y1;
-                y3 = y1 + 10;
-            }
-            else
-            {
-                y1 = (rowNumber * 10);
-                y2 = y1;
-                y3 = y1 - 10;
-            }
-
-            if(columnNumber % 2 == 0)
-            {
-                x1 = (columnNumber * 10) / 2;
-                x2 = x1 - 10;
-                x3 = x1;
-            }
-            else
-            {
-                x1 = ((columnNumber - 1)/2) * 10;
-                x2 = x1 + 10;
-                x3 = x1;
-            }
-
-
-            // Assemble result string
-
-            string coords = "(" + x1 + "," + y1 + ")" +
-                " (" + x2 + "," + y2 + ")" +
-                " (" + x3 + "," + y3 + ")";
-
-
-            return coords;
+                return "Unknown Task type. Please supply type field with either 'A' or 'B'";
+            } 
         }
 
         // PUT api/values/5
