@@ -58,6 +58,9 @@ namespace TrianglePuzzle.Controllers
             List<Tuple<int, int>> list = new List<Tuple<int, int>>();
 
             // Mathematically calculate position of vertices based on row and column number
+            
+            // NOTE: The instances of "10" here would be better suited as a variable so that the dimensions of the
+            // triangles could be changed
             if (columnNumber % 2 == 0)
             {
                 y1 = (rowNumber * 10) - 10;
